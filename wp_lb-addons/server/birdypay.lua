@@ -10,7 +10,7 @@ local payoutRunning = false
 AddEventHandler('onResourceStart', function(resourceName)
     if resourceName ~= GetCurrentResourceName() then return end
 
-    MySQL.query([[
+    MySQL.query.await([[
         CREATE TABLE IF NOT EXISTS wp_lb_addons_birdy_payouts (
             tweet_id      VARCHAR(10)  NOT NULL,
             paid_likes    INT          NOT NULL DEFAULT 0,
@@ -20,7 +20,7 @@ AddEventHandler('onResourceStart', function(resourceName)
         ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
     ]])
 
-    MySQL.query('ALTER TABLE wp_lb_addons_birdy_payouts ADD COLUMN IF NOT EXISTS paid_replies INT NOT NULL DEFAULT 0')
+    MySQL.query.await('ALTER TABLE wp_lb_addons_birdy_payouts ADD COLUMN IF NOT EXISTS paid_replies INT NOT NULL DEFAULT 0')
 
     Citizen.CreateThread(function()
         if not Config.BirdyPayoutInterval or Config.BirdyPayoutInterval <= 0 then return end
