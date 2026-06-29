@@ -9,11 +9,16 @@ STEP 2 — Copy lb-phone custom files
     server/custom/functions/wp_lb_addons.lua  ->  lb-phone/server/custom/functions/wp_lb_addons.lua
     client/custom/functions/wp_lb_addons.lua  ->  lb-phone/client/custom/functions/wp_lb_addons.lua
 
-STEP 3 — Add to server.cfg
+STEP 3 — Import the database
+  Import wp_lb-addons/install.sql into your server's database.
+  Creates the Trendy view-payout and Birdy payout tracking tables (required for those
+  payouts to persist and avoid double-counting). InstaPic donations work without it.
+
+STEP 4 — Add to server.cfg
   Add AFTER lb-phone:
     ensure wp_lb-addons
 
-STEP 4 — Start
+STEP 5 — Start
   Start or restart the server.
   wp_lb-addons automatically finds lb-phone's real UI page (from its fxmanifest `ui_page`,
   so it works even if lb-phone bumped its build folder, e.g. ui/dist7/index2.html), patches
@@ -23,7 +28,7 @@ STEP 4 — Start
   until they rejoin (or clear the FiveM NUI cache: %localappdata%\FiveM\FiveM.app\data\cache).
   Fresh joiners get it immediately.
 
-STEP 5 — Configure (optional)
+STEP 6 — Configure (optional)
   Edit wp_lb-addons/config.lua to adjust payout amounts:
     Config.TrendyViewPayout = 10           -- $ creator earns per unique viewer on Trendy
     Config.PlatformFeePercent = 0          -- % cut from all payouts (0 = disabled)
