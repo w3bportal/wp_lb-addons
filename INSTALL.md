@@ -15,8 +15,13 @@ STEP 3 — Add to server.cfg
 
 STEP 4 — Start
   Start or restart the server.
-  wp_lb-addons will automatically patch lb-phone's index.html and restart lb-phone.
-  No manual edits to lb-phone files needed.
+  wp_lb-addons automatically finds lb-phone's real UI page (from its fxmanifest `ui_page`,
+  so it works even if lb-phone bumped its build folder, e.g. ui/dist7/index2.html), patches
+  in the donate overlay, and restarts lb-phone once. No manual edits to lb-phone files needed.
+
+  NOTE: players already connected may keep a cached phone page and not see the donate button
+  until they rejoin (or clear the FiveM NUI cache: %localappdata%\FiveM\FiveM.app\data\cache).
+  Fresh joiners get it immediately.
 
 STEP 5 — Configure (optional)
   Edit wp_lb-addons/config.lua to adjust payout amounts:
