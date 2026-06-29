@@ -9,10 +9,9 @@ STEP 2 — Copy lb-phone custom files
     server/custom/functions/wp_lb_addons.lua  ->  lb-phone/server/custom/functions/wp_lb_addons.lua
     client/custom/functions/wp_lb_addons.lua  ->  lb-phone/client/custom/functions/wp_lb_addons.lua
 
-STEP 3 — Import the database
-  Import wp_lb-addons/install.sql into your server's database.
-  Creates the Trendy view-payout and Birdy payout tracking tables (required for those
-  payouts to persist and avoid double-counting). InstaPic donations work without it.
+STEP 3 — Database (automatic)
+  The Trendy view-payout and Birdy payout tables are created automatically on first start.
+  To create them manually instead, run wp_lb-addons/install.sql.
 
 STEP 4 — Add to server.cfg
   Add AFTER lb-phone:
